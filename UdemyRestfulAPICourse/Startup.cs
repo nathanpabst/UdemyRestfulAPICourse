@@ -23,6 +23,7 @@ namespace UdemyRestfulAPICourse
             // services.AddDbContext<QuotesDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MyConnection"))); alt. approach see appsettings.json
             services.AddDbContext<QuotesDbContext>(options => options.UseSqlServer(@"Server=.; Initial Catalog=QuotesDb;Trusted_Connection=True;"));
             services.AddControllers();
+            services.AddMvc().AddXmlDataContractSerializerFormatters();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +45,7 @@ namespace UdemyRestfulAPICourse
 
             app.UseAuthorization();
             
-            quotesDbContext.Database.EnsureCreated();
+            // quotesDbContext.Database.EnsureCreated();
 
             app.UseEndpoints(endpoints =>
             {
