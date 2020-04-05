@@ -12,6 +12,7 @@ namespace UdemyRestfulAPICourse.Models
         public string Author { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
+        public DateTime CreatedAt { get; set; }
 
     }
 }
