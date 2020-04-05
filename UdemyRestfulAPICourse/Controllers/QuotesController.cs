@@ -35,7 +35,7 @@ namespace UdemyRestfulAPICourse.Controllers
             }
             return Ok(quote);
         }
-
+        
         // POST: api/Quotes
         [HttpPost]
         public IActionResult Post([FromBody] Quote quote)
