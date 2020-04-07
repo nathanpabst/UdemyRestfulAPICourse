@@ -47,6 +47,15 @@ namespace UdemyRestfulAPICourse.Controllers
             return Ok(quotes.Skip((currentPageNumber - 1) * currentPageSize).Take(currentPageSize));
         }
 
+        // search quote list by type && return a list of matches via LINQ query. Custom functions must include the attribute routing. 
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult SearchQuotes(string type)
+        {
+            var results = _quotesDbContext.Quotes.Where(q => q.Type.StartsWith(type));
+            return Ok(results);
+        }
+
         // GET: api/Quotes/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
