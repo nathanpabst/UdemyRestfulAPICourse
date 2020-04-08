@@ -20,6 +20,7 @@ namespace UdemyRestfulAPICourse.Controllers
 
         // GET: api/Quotes
         [HttpGet]
+        [ResponseCache(Duration = 60)]
         public IActionResult Get(string sort)
         {
             IQueryable<Quote> quotes;
