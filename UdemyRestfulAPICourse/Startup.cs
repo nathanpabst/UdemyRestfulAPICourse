@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,15 @@ namespace UdemyRestfulAPICourse
             services.AddControllers();
             services.AddMvc().AddXmlDataContractSerializerFormatters();
             services.AddResponseCaching();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-4pi834kh.auth0.com/";
+                options.Audience = "https://localhost:44368/";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +64,8 @@ namespace UdemyRestfulAPICourse
             });
 
             app.UseResponseCaching();
+
+            app.UseAuthentication();
 
         }
     }
