@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace UdemyRestfulAPICourse.Models
 
         [Required]
         public DateTime CreatedAt { get; set; }
+
+        // the JsonIgnore attribute will hide the UserId property from search results
+        // [JsonIgnore]
+        public string UserId { get; set; }
 
     }
 }
