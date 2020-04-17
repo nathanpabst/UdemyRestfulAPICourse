@@ -21,7 +21,9 @@ namespace UdemyRestfulAPICourse
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<QuotesDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MyConnection"))); alt. approach see appsettings.json
+            // if referencing a connection string set in the appsettings.json file...
+            // publish the db after setting this next step. Right click on the DB. Publish DB. Import Profile. Select the file you downloaded from Azure (When Publish Profile is selected in the Portal). 
+            // services.AddDbContext<QuotesDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("QuotesDbContext")));
             services.AddDbContext<QuotesDbContext>(options => options.UseSqlServer(@"Server=.; Initial Catalog=QuotesDb;Trusted_Connection=True;"));
             services.AddControllers();
             services.AddMvc().AddXmlDataContractSerializerFormatters();
